@@ -1,0 +1,108 @@
+[
+  {
+    "title": "Smart Watch Pro",
+    "subtitle": "Track Everything",
+    "description": "Monitor your health and notifications with this sleek smartwatch.",
+    "price": "49",
+    "image": "https://m.media-amazon.com/images/I/61Brhn4WBIL._SX679_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE1"
+  },
+  {
+    "title": "Wireless Earbuds",
+    "subtitle": "Crystal Clear Sound",
+    "description": "Experience immersive audio with noise cancellation.",
+    "price": "29",
+    "image": "https://m.media-amazon.com/images/I/51OwGVQfMUL._SX300_SY300_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE2"
+  },
+  {
+    "title": "Portable Mini Fan",
+    "subtitle": "Cool On The Go",
+    "description": "Compact fan that keeps you cool wherever you are.",
+    "price": "19",
+    "image": "https://m.media-amazon.com/images/I/31YrZL046rL._SY445_SX342_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE3"
+  },
+  {
+    "title": "LED Desk Lamp",
+    "subtitle": "Eye Comfort Lighting",
+    "description": "Adjustable brightness with a sleek modern design.",
+    "price": "34",
+    "image": "https://m.media-amazon.com/images/I/41JHqpODFgL._SY300_SX300_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE4"
+  },
+  {
+    "title": "Bluetooth Speaker",
+    "subtitle": "Booming Bass",
+    "description": "Loud and clear sound in a portable size.",
+    "price": "39",
+    "image": "https://m.media-amazon.com/images/I/61Brhn4WBIL._SX679_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE5"
+  },
+  {
+    "title": "Fitness Tracker Band",
+    "subtitle": "Stay Active",
+    "description": "Count steps, calories, and monitor sleep.",
+    "price": "24",
+    "image": "https://m.media-amazon.com/images/I/51OwGVQfMUL._SX300_SY300_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE6"
+  },
+  {
+    "title": "Wireless Charger Pad",
+    "subtitle": "Fast & Easy",
+    "description": "Charge your phone without cables.",
+    "price": "22",
+    "image": "https://m.media-amazon.com/images/I/31YrZL046rL._SY445_SX342_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE7"
+  },
+  {
+    "title": "Laptop Cooling Stand",
+    "subtitle": "Cool & Ergonomic",
+    "description": "Prevent overheating and improve posture.",
+    "price": "33",
+    "image": "https://m.media-amazon.com/images/I/41JHqpODFgL._SY300_SX300_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE8"
+  },
+  {
+    "title": "USB-C Hub",
+    "subtitle": "Expand Your Ports",
+    "description": "Multiple ports for all your devices in one hub.",
+    "price": "27",
+    "image": "https://m.media-amazon.com/images/I/61Brhn4WBIL._SX679_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE9"
+  },
+  {
+    "title": "Action Camera",
+    "subtitle": "Adventure Ready",
+    "description": "Capture HD footage of your outdoor experiences.",
+    "price": "59",
+    "image": "https://m.media-amazon.com/images/I/51OwGVQfMUL._SX300_SY300_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE10"
+  },
+  {
+    "title": "Foldable Keyboard",
+    "subtitle": "Compact Typing",
+    "description": "Portable keyboard for typing on the go.",
+    "price": "31",
+    "image": "https://m.media-amazon.com/images/I/31YrZL046rL._SY445_SX342_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE11"
+  },
+  {
+    "title": "Smart LED Bulb",
+    "subtitle": "Voice Control",
+    "description": "Control lighting with your smartphone or Alexa.",
+    "price": "18",
+    "image": "https://m.media-amazon.com/images/I/41JHqpODFgL._SY300_SX300_QL70_FMwebp_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE12"
+  },
+  {
+    "title": "Gaming Mouse",
+    "subtitle": "Precision Performance",
+    "description": "Custom DPI settings and RGB lighting.",
+    "price": "28",
+    "image": "https://m.media-amazon.com/images/I/61Brhn4WBIL._SX679_.jpg",
+    "link": "https://www.amazon.in/dp/B00EXAMPLE13"
+  },
+  {
+    "title": "Ring Light",
+    "subti
