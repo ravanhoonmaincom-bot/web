@@ -1,261 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Grab Cool Gadgets</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- ✅ Poppins font from Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cool Gadgets</title>
   <style>
+    :root {
+      --bg: #f5f5f5;
+      --text: #000;
+      --card: #fff;
+      --desc: #555;
+      --subtitle: #777;
+      --tab-bg: #eee;
+      --tab-active: #000;
+      --tab-active-text: #fff;
+      --button-bg: #000;
+      --button-text: #fff;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #fff;
+      --card: #1e1e1e;
+      --desc: #ccc;
+      --subtitle: #aaa;
+      --tab-bg: #2c2c2c;
+      --tab-active: #fff;
+      --tab-active-text: #000;
+      --button-bg: #fff;
+      --button-text: #000;
+    }
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
     }
 
     body {
-      margin: 0;
-      font-family: 'Poppins';
-      background: #fff;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
     }
 
-    header, footer {
-      width: 100%;
-      max-width: 450px;
-      text-align: center;
-      padding: 10px;
-      background: #f8f8f8;
-    }
-
-    .social-icons a {
-      margin: 0 8px;
-      color: #333;
-      font-size: 18px;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .social-icons a:hover {
-      color: #0073e6;
-    }
-
-    .sticky-search {
+    header {
       position: sticky;
       top: 0;
-      z-index: 999;
-      width: 100%;
-      background: #fff;
-      padding: 10px 0;
-      text-align: center;
-      border-bottom: 1px solid #eee;
+      background: var(--card);
+      z-index: 1000;
+      padding: 15px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
     }
 
-    #searchBox {
-      padding: 10px;
-      width: 90%;
-      max-width: 400px;
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #searchBar {
+      padding: 8px 12px;
       border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 16px;
-      background: #fff;
+      border-radius: 8px;
+      width: 200px;
+      transition: width 0.3s ease, opacity 0.3s ease;
+    }
+
+    #searchBar.hidden {
+      width: 0;
+      opacity: 0;
+      padding: 8px 0;
+      border: none;
+      pointer-events: none;
+    }
+
+    .icon-btn {
+      font-size: 18px;
+      cursor: pointer;
+      background: var(--tab-bg);
+      padding: 8px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: #ccc;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 15px;
+      margin: 10px 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      background: var(--tab-bg);
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--text);
+    }
+
+    .tab.active {
+      background: var(--tab-active);
+      color: var(--tab-active-text);
     }
 
     .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      width: 100%;
-      max-width: 450px;
-      padding: 10px;
+      transition: transform 0.2s;
     }
 
-    .product-card {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-      position: relative;
-    }
-
-    .product-card:hover {
+    .card:hover {
       transform: scale(1.02);
     }
 
-    .product-card img {
-      width: 100px;
-      height: 100px;
+    .card img {
+      width: 100%;
+      height: 200px;
       object-fit: contain;
-      background: #f9f9f9;
-      flex-shrink: 0;
-      padding: 10px;
+      background: white;
     }
 
-    .product-info {
-      flex-grow: 1;
-      padding: 10px;
+    .card-content {
+      padding: 20px;
     }
 
-    .product-title {
-      font-size: 16px;
-      font-weight: 600;
+    .title {
+      font-weight: bold;
+      font-size: 18px;
       margin-bottom: 5px;
-      font-family: 'Poppins';
-      color:#000;
     }
 
-    .copy-btn {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: #eee;
-      border: none;
-      padding: 5px 8px;
-      font-size: 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight:600;
+    .subtitle {
+      color: var(--subtitle);
+      margin-bottom: 10px;
     }
 
-    .copy-btn:hover {
-      background: #ddd;
-    }
-
-    .loader {
-      margin: 40px 0;
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #3498db;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg);}
-      100% { transform: rotate(360deg);}
-    }
-
-    footer {
+    .desc {
       font-size: 14px;
-      padding: 20px 10px;
+      color: var(--desc);
+      margin-bottom: 15px;
     }
 
-    @media (max-width: 500px) {
-      .product-card {
-        flex-direction: row;
+    .price-buy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      background: #eee;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .buy-button {
+      background: var(--button-bg);
+      color: var(--button-text);
+      padding: 8px 15px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .buy-button:hover {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 480px) {
+      #searchBar {
+        width: 150px;
       }
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="header-container">
+      <div class="header-title">Cool Gadgets</div>
+      <div class="search-container">
+        <input type="text" id="searchBar" class="hidden" placeholder="Search products.." />
+        <div class="icon-btn" id="searchToggle">🔍</div>
+        <div class="icon-btn" id="darkToggle">🌙</div>
+      </div>
+    </div>
 
-<header>
-  <h2>Grab Cool Gadgets</h2>
-  <div class="social-icons">
-    <a href="https://instagram.com/GrabCoolGadgets" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://facebook.com/grablootoffers" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://youtube.com/@grabcoolgadgets" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://t.me/GrabLootOffers" target="_blank"><i class="fab fa-telegram"></i></a>
-  </div>
-</header>
+    <div class="tabs">
+      <div class="tab active" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartphones</div>
+      <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/ledTV.json">LED TVs</div>
+      <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartwatches.json">Smartwatches</div>
+    </div>
+  </header>
 
-<div class="sticky-search">
-  <input type="text" id="searchBox" placeholder="Search gadgets...">
-</div>
+  <main class="product-list" id="productList"></main>
 
-<div class="loader" id="loader"></div>
-<div class="product-list" id="productList"></div>
+  <script>
+    const productList = document.getElementById('productList');
+    const searchBar = document.getElementById('searchBar');
+    const searchToggle = document.getElementById('searchToggle');
+    const darkToggle = document.getElementById('darkToggle');
+    const tabs = document.querySelectorAll('.tab');
+    let allData = [];
 
-<footer>
-  <div>Associated with Amazon</div>
-  <div class="social-icons">
-    <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://t.me/" target="_blank"><i class="fab fa-telegram"></i></a>
-  </div>
-</footer>
-
-<script>
-  const jsonURL = "https://raw.githubusercontent.com/ravanhoonmaincom-bot/web/refs/heads/main/product.json";
-  const productList = document.getElementById("productList");
-  const loader = document.getElementById("loader");
-  const searchBox = document.getElementById("searchBox");
-
-  let allProducts = [];
-
-  function createProductCard(product) {
-    const card = document.createElement("a");
-    card.href = product.link;
-    card.target = "_blank";
-    card.className = "product-card";
-
-    const img = document.createElement("img");
-    img.src = product.image;
-    img.loading = "lazy";
-    card.appendChild(img);
-
-    const info = document.createElement("div");
-    info.className = "product-info";
-
-    const title = document.createElement("div");
-    title.className = "product-title";
-    title.textContent = product.name;
-
-    info.appendChild(title);
-    card.appendChild(info);
-
-    const copyBtn = document.createElement("button");
-    copyBtn.className = "copy-btn";
-    copyBtn.innerText = "Copy Link";
-    copyBtn.onclick = (e) => {
-      e.preventDefault();
-      navigator.clipboard.writeText(product.link);
-      copyBtn.innerText = "Copied!";
-      setTimeout(() => copyBtn.innerText = "Copy Link", 1500);
-    };
-    card.appendChild(copyBtn);
-
-    return card;
-  }
-
-  function renderProducts(filter = "") {
-    productList.innerHTML = "";
-    const filtered = allProducts.filter(p =>
-      p.name.toLowerCase().includes(filter.toLowerCase())
-    );
-    filtered.forEach(product => {
-      const card = createProductCard(product);
-      productList.appendChild(card);
-    });
-  }
-
-  fetch(jsonURL)
-    .then(res => res.json())
-    .then(data => {
-      allProducts = data;
-      loader.style.display = "none";
-      renderProducts();
-    })
-    .catch(err => {
-      loader.style.display = "none";
-      productList.innerHTML = "<p>Failed to load products.</p>";
-      console.error(err);
+    // Toggle Search
+    searchToggle.addEventListener('click', () => {
+      searchBar.classList.toggle('hidden');
+      if (!searchBar.classList.contains('hidden')) {
+        searchBar.focus();
+      }
     });
 
-  searchBox.addEventListener("input", () => {
-    renderProducts(searchBox.value);
-  });
-</script>
+    // Toggle Dark Mode
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      darkToggle.textContent = isDark ? '☀️' : '🌙';
+    });
 
+    // Search Filter
+    searchBar.addEventListener('input', () => {
+      const filtered = allData.filter(p => p.title.toLowerCase().includes(searchBar.value.toLowerCase()));
+      displayProducts(filtered);
+    });
+
+    // Load Products
+    async function loadProducts(url) {
+      try {
+        productList.innerHTML = '<p>Loading products...</p>';
+        const response = await fetch(url);
+        const data = await response.json();
+        allData = data;
+        displayProducts(data);
+      } catch (error) {
+        productList.innerHTML = '<p>Failed to load products.</p>';
+        console.error('Fetch error:', error);
+      }
+    }
+
+    function displayProducts(products) {
+      productList.innerHTML = '';
+      products.forEach(product => {
+        productList.innerHTML += `
+          <div class="card">
+            <img src="${product.image}" alt="${product.title}" loading="lazy" />
+            <div class="card-content">
+              <div class="title">${product.title}</div>
+              <div class="subtitle">${product.subtitle || ''}</div>
+              <div class="desc">${product.description}</div>
+              <div class="price-buy">
+                <span class="price">$${product.price}</span>
+                <a class="buy-button" href="${product.link}" target="_blank">Buy Now →</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Tab Switching
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const url = tab.getAttribute('data-url');
+        loadProducts(url);
+      });
+    });
+
+    // Initial load
+    loadProducts(tabs[0].getAttribute('data-url'));
+  </script>
 </body>
 </html>
