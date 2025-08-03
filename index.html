@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gadgets</title>
+  <title>Gadgets – Smart</title>
   <style>
     :root {
-      --bg: #f5f5f5;
+      --bg: #f9f9f9;
       --text: #000;
       --card: #fff;
       --desc: #555;
@@ -18,39 +18,24 @@
       --button-text: #fff;
     }
 
-    body.dark {
-      --bg: #121212;
-      --text: #fff;
-      --card: #1e1e1e;
-      --desc: #ccc;
-      --subtitle: #aaa;
-      --tab-bg: #2c2c2c;
-      --tab-active: #fff;
-      --tab-active-text: #000;
-      --button-bg: #fff;
-      --button-text: #000;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      padding: 20px;
     }
 
     header {
       background: var(--card);
       padding: 15px 20px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      margin-bottom: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 1001;
     }
 
     .header-container {
@@ -65,68 +50,57 @@
       font-weight: bold;
     }
 
-    .search-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    #searchBar {
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      width: 200px;
-      transition: width 0.3s ease, opacity 0.3s ease;
-    }
-
-    #searchBar.hidden {
-      width: 0;
-      opacity: 0;
-      padding: 8px 0;
-      border: none;
-      pointer-events: none;
-    }
-
     .icon-btn {
-      font-size: 18px;
+      font-size: 22px;
       cursor: pointer;
       background: var(--tab-bg);
       padding: 8px;
       border-radius: 8px;
-      transition: background 0.2s;
+      border: none;
     }
 
-    .icon-btn:hover {
-      background: #ccc;
+    #categoryTitle {
+      font-size: 18px;
+      margin: 15px 20px 5px;
     }
 
-    .tab-wrapper {
-      position: sticky;
+    #mainSearch {
+      width: calc(100% - 40px);
+      margin: 5px 20px 20px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .tabs-popup {
+      position: fixed;
       top: 0;
-      background: var(--card);
-      padding: 10px 20px;
-      z-index: 999;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      margin-bottom: 20px;
+      right: -100%;
+      width: 60%;
+      height: 100%;
+      background: white;
+      z-index: 1000;
+      padding: 80px 20px 20px;
+      overflow-y: auto;
+      transition: right 0.3s ease;
+      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
     }
 
-    .tabs {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
+    .tabs-popup.show {
+      right: 0;
     }
 
-    .tab {
-      padding: 10px 20px;
+    .tabs-popup .tab {
+      margin: 8px 0;
+      padding: 12px 20px;
       background: var(--tab-bg);
-      border-radius: 20px;
+      border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
-      color: var(--text);
+      font-size: 16px;
+      text-align: left;
     }
 
-    .tab.active {
+    .tabs-popup .tab.active {
       background: var(--tab-active);
       color: var(--tab-active-text);
     }
@@ -135,6 +109,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
+      padding: 0 20px 60px;
     }
 
     .card {
@@ -200,18 +175,54 @@
       border-radius: 20px;
       text-decoration: none;
       font-size: 14px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--card);
+      border-top: 1px solid #ccc;
       display: flex;
-      align-items: center;
-      gap: 5px;
+      justify-content: space-around;
+      padding: 10px 0;
+      z-index: 999;
     }
 
-    .buy-button:hover {
-      opacity: 0.85;
+    .bottom-nav .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px 5px;
+      font-weight: bold;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
     }
 
-    @media (max-width: 480px) {
-      #searchBar {
-        width: 150px;
+    .bottom-nav .tab.active {
+      background: var(--tab-active);
+      color: var(--tab-active-text);
+      border-radius: 10px;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: black;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+    }
+
+    @media (max-width: 768px) {
+      .tabs-popup {
+        width: 80%;
       }
     }
   </style>
@@ -220,93 +231,120 @@
   <header>
     <div class="header-container">
       <div class="header-title">Gadgets</div>
-      <div class="search-container">
-        <input type="text" id="searchBar" class="hidden" placeholder="Search products.." />
-        <div class="icon-btn" id="searchToggle">🔍</div>
-        <div class="icon-btn" id="darkToggle">🌙</div>
-      </div>
+      <button class="icon-btn" id="menuToggle">☰</button>
     </div>
   </header>
 
-  <!-- Tabs moved outside header and made sticky -->
-  <div class="tab-wrapper">
-    <div class="tabs">
-      <div class="tab active" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartphones</div>
-      <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/ledtv.json">LED TVs</div>
-      <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartwatches</div>
-    </div>
+  <h2 id="categoryTitle">Category: Smartphones</h2>
+  <input type="text" id="mainSearch" placeholder="Search products..." />
+
+  <!-- Slide-in Right Menu -->
+  <div class="tabs-popup" id="menu">
+    <div class="tab active" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartphones</div>
+    <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/ledtv.json">LED TVs</div>
+    <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartwatches</div>
   </div>
 
   <main class="product-list" id="productList"></main>
 
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <div class="tab active" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartphones</div>
+    <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/ledtv.json">LED TVs</div>
+    <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartwatches</div>
+  </div>
+
+  <!-- Back to Top -->
+  <div id="backToTop">↑</div>
+
   <script>
     const productList = document.getElementById('productList');
-    const searchBar = document.getElementById('searchBar');
-    const searchToggle = document.getElementById('searchToggle');
-    const darkToggle = document.getElementById('darkToggle');
-    const tabs = document.querySelectorAll('.tab');
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('menu');
+    const menuItems = menu.querySelectorAll('.tab');
+    const bottomTabs = document.querySelectorAll('.bottom-nav .tab');
+    const categoryTitle = document.getElementById('categoryTitle');
+    const backToTop = document.getElementById('backToTop');
+    const searchBar = document.getElementById('mainSearch');
     let allData = [];
 
-    searchToggle.addEventListener('click', () => {
-      searchBar.classList.toggle('hidden');
-      if (!searchBar.classList.contains('hidden')) {
-        searchBar.focus();
-      }
+    // Toggle popup + icon
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('show');
+      menuToggle.textContent = menu.classList.contains('show') ? '✖' : '☰';
     });
 
-    darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    });
+    // Switch Tab Handler
+    function switchTab(tabEl) {
+      const tabName = tabEl.textContent.trim();
+      const url = tabEl.getAttribute('data-url');
+      document.title = `${tabName} – Gadgets`;
+      categoryTitle.textContent = `Category: ${tabName}`;
+      loadProducts(url);
 
-    searchBar.addEventListener('input', () => {
-      const filtered = allData.filter(p => p.title.toLowerCase().includes(searchBar.value.toLowerCase()));
-      displayProducts(filtered);
-    });
+      menuItems.forEach(t => t.classList.remove('active'));
+      bottomTabs.forEach(t => t.classList.remove('active'));
+      tabEl.classList.add('active');
+      
+      menu.classList.remove('show');
+      menuToggle.textContent = '☰';
+    }
 
+    // Tab clicks
+    menuItems.forEach(tab => tab.addEventListener('click', () => switchTab(tab)));
+    bottomTabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab)));
+
+    // Load products
     async function loadProducts(url) {
+      productList.innerHTML = '<p style="padding:20px;">Loading products...</p>';
       try {
-        productList.innerHTML = '<p>Loading products...</p>';
-        const response = await fetch(url);
-        const data = await response.json();
+        const res = await fetch(url);
+        const data = await res.json();
         allData = data;
         displayProducts(data);
-      } catch (error) {
-        productList.innerHTML = '<p>Failed to load products.</p>';
-        console.error('Fetch error:', error);
+      } catch {
+        productList.innerHTML = '<p style="padding:20px;">Failed to load products.</p>';
       }
     }
 
     function displayProducts(products) {
       productList.innerHTML = '';
-      products.forEach(product => {
+      products.forEach(p => {
         productList.innerHTML += `
           <div class="card">
-            <img src="${product.image}" alt="${product.title}" loading="lazy" />
+            <img src="${p.image}" alt="${p.title}" />
             <div class="card-content">
-              <div class="title">${product.title}</div>
-              <div class="subtitle">${product.subtitle || ''}</div>
-              <div class="desc">${product.description}</div>
+              <div class="title">${p.title}</div>
+              <div class="subtitle">${p.subtitle || ''}</div>
+              <div class="desc">${p.description}</div>
               <div class="price-buy">
-                <span class="price">$${product.price}</span>
-                <a class="buy-button" href="${product.link}" target="_blank">Buy Now →</a>
+                <span class="price">$${p.price}</span>
+                <a class="buy-button" href="${p.link}" target="_blank">Buy Now</a>
               </div>
             </div>
-          </div>
-        `;
+          </div>`;
       });
     }
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const url = tab.getAttribute('data-url');
-        loadProducts(url);
-      });
+    // Main Search
+    searchBar.addEventListener('input', () => {
+      const val = searchBar.value.toLowerCase();
+      const filtered = allData.filter(p => p.title.toLowerCase().includes(val));
+      displayProducts(filtered);
     });
 
-    loadProducts(tabs[0].getAttribute('data-url'));
+    // Back to top
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Initial Load
+    document.title = "Smartphones – Gadgets";
+    categoryTitle.textContent = "Category: Smartphones";
+    loadProducts(menuItems[0].getAttribute('data-url'));
   </script>
 </body>
 </html>
