@@ -46,13 +46,11 @@
     }
 
     header {
-      position: sticky;
-      top: 0;
       background: var(--card);
-      z-index: 1000;
       padding: 15px 20px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
     }
 
     .header-container {
@@ -102,10 +100,20 @@
       background: #ccc;
     }
 
+    .tab-wrapper {
+      position: sticky;
+      top: 0;
+      background: var(--card);
+      padding: 10px 20px;
+      z-index: 999;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
     .tabs {
       display: flex;
       gap: 15px;
-      margin: 10px 0 20px;
       flex-wrap: wrap;
     }
 
@@ -218,13 +226,16 @@
         <div class="icon-btn" id="darkToggle">🌙</div>
       </div>
     </div>
+  </header>
 
+  <!-- Tabs moved outside header and made sticky -->
+  <div class="tab-wrapper">
     <div class="tabs">
       <div class="tab active" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartphones</div>
       <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/ledtv.json">LED TVs</div>
       <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartwatches</div>
     </div>
-  </header>
+  </div>
 
   <main class="product-list" id="productList"></main>
 
@@ -236,7 +247,6 @@
     const tabs = document.querySelectorAll('.tab');
     let allData = [];
 
-    // Toggle Search
     searchToggle.addEventListener('click', () => {
       searchBar.classList.toggle('hidden');
       if (!searchBar.classList.contains('hidden')) {
@@ -244,20 +254,16 @@
       }
     });
 
-    // Toggle Dark Mode
     darkToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      darkToggle.textContent = isDark ? '☀️' : '🌙';
+      darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
     });
 
-    // Search Filter
     searchBar.addEventListener('input', () => {
       const filtered = allData.filter(p => p.title.toLowerCase().includes(searchBar.value.toLowerCase()));
       displayProducts(filtered);
     });
 
-    // Load Products
     async function loadProducts(url) {
       try {
         productList.innerHTML = '<p>Loading products...</p>';
@@ -291,7 +297,6 @@
       });
     }
 
-    // Tab Switching
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
@@ -301,7 +306,6 @@
       });
     });
 
-    // Initial load
     loadProducts(tabs[0].getAttribute('data-url'));
   </script>
 </body>
