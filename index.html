@@ -3,348 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gadgets – Smart</title>
+  <title>Modern Form</title>
   <style>
-    :root {
-      --bg: #f9f9f9;
-      --text: #000;
-      --card: #fff;
-      --desc: #555;
-      --subtitle: #777;
-      --tab-bg: #eee;
-      --tab-active: #000;
-      --tab-active-text: #fff;
-      --button-bg: #000;
-      --button-text: #fff;
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    header {
-      background: var(--card);
-      padding: 15px 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1001;
-    }
-
-    .header-container {
+      margin-top: 20px;
+      background: linear-gradient(145deg, #f6f0f3, #e8f3fc);
+      height: 40vh;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: top;
     }
 
-    .header-title {
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .icon-btn {
-      font-size: 22px;
-      cursor: pointer;
-      background: var(--tab-bg);
-      padding: 8px;
-      border-radius: 8px;
-      border: none;
-    }
-
-    #categoryTitle {
-      font-size: 18px;
-      margin: 15px 20px 5px;
-    }
-
-    #mainSearch {
-      width: calc(100% - 40px);
-      margin: 5px 20px 20px;
-      padding: 10px 15px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
-
-    .tabs-popup {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 60%;
-      height: 100%;
-      background: white;
-      z-index: 1000;
-      padding: 80px 20px 20px;
-      overflow-y: auto;
-      transition: right 0.3s ease;
-      box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .tabs-popup.show {
-      right: 0;
-    }
-
-    .tabs-popup .tab {
-      margin: 8px 0;
-      padding: 12px 20px;
-      background: var(--tab-bg);
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      text-align: left;
-    }
-
-    .tabs-popup .tab.active {
-      background: var(--tab-active);
-      color: var(--tab-active-text);
-    }
-
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 0 20px 60px;
-    }
-
-    .card {
-      background: var(--card);
+    .form-card {
+      background: #fff;
       border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: scale(1.02);
-    }
-
-    .card img {
+      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+      padding: 30px;
       width: 100%;
-      height: 200px;
-      object-fit: contain;
-      background: white;
+      max-width: 400px;
+      position: relative;
+      z-index: 1;
     }
 
-    .card-content {
-      padding: 20px;
-    }
-
-    .title {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-
-    .subtitle {
-      color: var(--subtitle);
-      margin-bottom: 10px;
-    }
-
-    .desc {
-      font-size: 14px;
-      color: var(--desc);
-      margin-bottom: 15px;
-    }
-
-    .price-buy {
+    .form-card .top-bar {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      margin-bottom: 20px;
     }
 
-    .price {
-      background: #eee;
-      padding: 5px 10px;
-      border-radius: 10px;
-      font-weight: bold;
-      color: #000;
-    }
-
-    .buy-button {
-      background: var(--button-bg);
-      color: var(--button-text);
-      padding: 8px 15px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: var(--card);
-      border-top: 1px solid #ccc;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      z-index: 999;
-    }
-
-    .bottom-nav .tab {
-      flex: 1;
-      text-align: center;
-      padding: 10px 5px;
-      font-weight: bold;
-      color: var(--text);
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .bottom-nav .tab.active {
-      background: var(--tab-active);
-      color: var(--tab-active-text);
-      border-radius: 10px;
-    }
-
-    #backToTop {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      background: black;
-      color: white;
-      padding: 10px 15px;
+    .form-card .top-bar span {
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      font-size: 20px;
+      display: inline-block;
+    }
+
+    .form-card .top-bar span.red { background: #ff5f56; }
+    .form-card .top-bar span.yellow { background: #ffbd2e; }
+    .form-card .top-bar span.green { background: #27c93f; }
+
+    .form-card label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .form-card input {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .form-card input:focus {
+      outline: none;
+      border-color: #a084f9;
+      box-shadow: 0 0 0 3px rgba(160, 132, 249, 0.2);
+    }
+
+    .form-card button {
+      width: 100%;
+      padding: 14px;
+      background: #7b61ff;
+      border: none;
+      color: #fff;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 15px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .form-card button:hover {
+      background: #6a52e8;
+    }
+
+    /* Popup styles */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
       display: none;
+      justify-content: center;
+      align-items: center;
       z-index: 999;
     }
 
-    @media (max-width: 768px) {
-      .tabs-popup {
-        width: 80%;
-      }
+    .popup-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .popup-content h2 {
+      margin: 0 0 10px;
+      color: #4caf50;
+    }
+
+    .popup-content button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #7b61ff;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .popup-content button:hover {
+      background: #6a52e8;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-container">
-      <div class="header-title">Gadgets</div>
-      <button class="icon-btn" id="menuToggle">☰</button>
+
+  <form class="form-card" id="myForm">
+    <div class="top-bar">
+      <span class="red"></span>
+      <span class="yellow"></span>
+      <span class="green"></span>
     </div>
-  </header>
 
-  <h2 id="categoryTitle">Category: Smartphones</h2>
-  <input type="text" id="mainSearch" placeholder="Search products..." />
+    <label for="fullname">Full Name*</label>
+    <input type="text" name="entry.605182424" id="fullname" placeholder="Type your name" required >
 
-  <!-- Slide-in Right Menu -->
-  <div class="tabs-popup" id="menu">
-    <div class="tab active" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartphones</div>
-    <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/ledtv.json">LED TVs</div>
-    <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartwatches</div>
+    <label for="email">Email*</label>
+    <input type="email" name="entry.1070057513" id="email" placeholder="Type your email address" required>
+
+    <button type="submit">Submit →</button>
+  </form>
+
+  <!-- Thank You Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>Thank You!</h2>
+      <p>Your submission has been sent.</p>
+      <button onclick="closePopup()">Close</button>
+    </div>
   </div>
-
-  <main class="product-list" id="productList"></main>
-
-  <!-- Bottom Navigation -->
-  <div class="bottom-nav">
-    <div class="tab active" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartphones</div>
-    <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/ledtv.json">LED TVs</div>
-    <div class="tab" data-url="https://raw.githubusercontent.com/ravanhoonmaincom-bot/Download/refs/heads/main/smartphone.json">Smartwatches</div>
-  </div>
-
-  <!-- Back to Top -->
-  <div id="backToTop">↑</div>
 
   <script>
-    const productList = document.getElementById('productList');
-    const menuToggle = document.getElementById('menuToggle');
-    const menu = document.getElementById('menu');
-    const menuItems = menu.querySelectorAll('.tab');
-    const bottomTabs = document.querySelectorAll('.bottom-nav .tab');
-    const categoryTitle = document.getElementById('categoryTitle');
-    const backToTop = document.getElementById('backToTop');
-    const searchBar = document.getElementById('mainSearch');
-    let allData = [];
+    const form = document.getElementById("myForm");
+    const popup = document.getElementById("popup");
 
-    // Toggle popup + icon
-    menuToggle.addEventListener('click', () => {
-      menu.classList.toggle('show');
-      menuToggle.textContent = menu.classList.contains('show') ? '✖' : '☰';
-    });
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
 
-    // Switch Tab Handler
-    function switchTab(tabEl) {
-      const tabName = tabEl.textContent.trim();
-      const url = tabEl.getAttribute('data-url');
-      document.title = `${tabName} – Gadgets`;
-      categoryTitle.textContent = `Category: ${tabName}`;
-      loadProducts(url);
+      const formData = new FormData(form);
 
-      menuItems.forEach(t => t.classList.remove('active'));
-      bottomTabs.forEach(t => t.classList.remove('active'));
-      tabEl.classList.add('active');
-      
-      menu.classList.remove('show');
-      menuToggle.textContent = '☰';
-    }
-
-    // Tab clicks
-    menuItems.forEach(tab => tab.addEventListener('click', () => switchTab(tab)));
-    bottomTabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab)));
-
-    // Load products
-    async function loadProducts(url) {
-      productList.innerHTML = '<p style="padding:20px;">Loading products...</p>';
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        allData = data;
-        displayProducts(data);
-      } catch {
-        productList.innerHTML = '<p style="padding:20px;">Failed to load products.</p>';
-      }
-    }
-
-    function displayProducts(products) {
-      productList.innerHTML = '';
-      products.forEach(p => {
-        productList.innerHTML += `
-          <div class="card">
-            <img src="${p.image}" alt="${p.title}" />
-            <div class="card-content">
-              <div class="title">${p.title}</div>
-              <div class="subtitle">${p.subtitle || ''}</div>
-              <div class="desc">${p.description}</div>
-              <div class="price-buy">
-                <span class="price">$${p.price}</span>
-                <a class="buy-button" href="${p.link}" target="_blank">Buy Now</a>
-              </div>
-            </div>
-          </div>`;
+      fetch("https://docs.google.com/forms/d/e/1FAIpQLSf1TNMpqVHgsvPRTSwNzws8SLc7k1fCpX0W_DX40yybcuH-kw/formResponse", {
+        method: "POST",
+        mode: "no-cors", // required to bypass CORS issues
+        body: formData
+      }).then(() => {
+        popup.style.display = "flex";
+        form.reset();
+      }).catch((error) => {
+        alert("Error submitting form. Please try again.");
+        console.error("Form submission error:", error);
       });
+    });
+
+    function closePopup() {
+      popup.style.display = "none";
     }
-
-    // Main Search
-    searchBar.addEventListener('input', () => {
-      const val = searchBar.value.toLowerCase();
-      const filtered = allData.filter(p => p.title.toLowerCase().includes(val));
-      displayProducts(filtered);
-    });
-
-    // Back to top
-    window.addEventListener('scroll', () => {
-      backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Initial Load
-    document.title = "Smartphones – Gadgets";
-    categoryTitle.textContent = "Category: Smartphones";
-    loadProducts(menuItems[0].getAttribute('data-url'));
   </script>
+
 </body>
 </html>
